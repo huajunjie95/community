@@ -1,6 +1,6 @@
 package com.nowcoder.community.controller;
 
-import com.nowcoder.community.annotation.LoginRequierd;
+import com.nowcoder.community.annotation.LoginRequired;
 import com.nowcoder.community.entity.Event;
 import com.nowcoder.community.entity.Page;
 import com.nowcoder.community.entity.User;
@@ -74,7 +74,7 @@ public class FollowController implements CommunityConstant {
         page.setPath("/followees/" + userId);
         page.setRows((int) followService.findFolloweeCount(userId, ENTITY_TYPE_USER));
 
-        List<Map<String, Object>> userList = followService.findFollowee(userId, page.getOffset(), page.getLimit());
+        List<Map<String, Object>> userList = followService.findFollowees(userId, page.getOffset(), page.getLimit());
 
         if (userList != null) {
             for (Map<String, Object> map : userList) {
@@ -97,7 +97,7 @@ public class FollowController implements CommunityConstant {
         page.setPath("/followers/" + userId);
         page.setRows((int) followService.findFollowerCount(ENTITY_TYPE_USER, userId));
 
-        List<Map<String, Object>> userList = followService.findFollower(userId, page.getOffset(), page.getLimit());
+        List<Map<String, Object>> userList = followService.findFollowers(userId, page.getOffset(), page.getLimit());
 
         if (userList != null) {
             for (Map<String, Object> map : userList) {
